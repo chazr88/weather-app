@@ -16,7 +16,7 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  background-color: rgb(236, 236, 236);
+  background-color: #552c54;
   height: 100vh;
 }
 * {

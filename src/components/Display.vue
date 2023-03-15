@@ -1,13 +1,15 @@
 <template>
   <div class="display">
-    <WeatherDetails/>
-    <CityInput/>
+    <WeatherDetails :weather="weather"/>
+    <CityInput @citySubmit="onCitySubmit"/>
   </div>
 </template>
 
 <script>
 import CityInput from "./CityInput.vue";
 import WeatherDetails from "./WeatherDetails.vue";
+import axios from "axios";
+const ACCESS_KEY = 'fdc1cadb7e791f4a059290c56b4b68a5';
 
 export default {
   name: 'HelloWorld',
@@ -15,8 +17,16 @@ export default {
     WeatherDetails,
     CityInput
   },
-  props: {
-    msg: String
+  data() {
+        return { weather: null};
+  },
+  methods: {
+    onCitySubmit(city) {
+      axios.get(`http://api.weatherstack.com/current?access_key=${ACCESS_KEY}&query=${city}&units=f`)
+      .then(response => {
+                this.weather = response.data;
+            })
+    }
   }
 }
 </script>
@@ -31,7 +41,7 @@ export default {
   height: 600px;
   width: 500px;
   border-radius: 10px;
-  background-color: rgb(197, 196, 196);
+  background-color: #5d5b9f;
   text-align: center;
   opacity: 90%;
 }

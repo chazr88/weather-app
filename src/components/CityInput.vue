@@ -1,12 +1,17 @@
 <template>
     <div>
-        <input placeholder="City" />
+        <input @keyup.enter="onInput" placeholder="City" />
     </div>
 </template>
 
 <script>
 export default {
-    name: 'CityInput'
+    name: 'CityInput',
+    methods: {
+        onInput: function(event) {
+            this.$emit('citySubmit', event.target.value)
+        }
+    }
 }
 </script>
 
